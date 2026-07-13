@@ -30,6 +30,16 @@ export const queryKeys = {
     listings: ["farmer-listings"] as const,
     orders: (params?: Record<string, unknown>) =>
       ["farmer-orders", params] as const,
+    // ── Dashboard Redesign ──
+    businessOverview: ["farmer", "business-overview"] as const,
+    marketplaceOverview: (productTypeId: string) =>
+      ["farmer", "marketplace-overview", productTypeId] as const,
+    marketActivityData: (productTypeId: string) =>
+      ["farmer", "market-activity", productTypeId] as const,
+    marketTrendLive: (productTypeId: string) =>
+      ["farmer", "market-trend-live", productTypeId] as const,
+    marketplaceHealth: (productTypeId: string) =>
+      ["farmer", "marketplace-health", productTypeId] as const,
   },
   customer: {
     overview: ["customer", "overview"] as const,

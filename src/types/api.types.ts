@@ -295,3 +295,69 @@ export interface SpendingTrendPoint {
   month: string;
   amount: number;
 }
+
+// ── Farmer Dashboard (Redesign) ────────────────────────────────────
+
+export interface FarmerBusinessOverview {
+  revenueToday: number;
+  revenueMonth: number;
+  completedOrders: number;
+  pendingOrders: number;
+  activeListings: number;
+  quantitySold: number;
+  averageSellingPrice: number;
+}
+
+export type MarketDirection = "UP" | "DOWN" | "STABLE";
+
+export interface MarketplaceOverview {
+  averagePrice: number;
+  highestPrice: number;
+  lowestPrice: number;
+  activeListings: number;
+  ordersToday: number;
+  farmersSelling: number;
+  marketDirection: MarketDirection;
+}
+
+export interface HourlyActivityPoint {
+  hour: string;
+  orders: number;
+}
+
+export interface MarketActivityData {
+  ordersToday: number;
+  completedOrders: number;
+  pendingOrders: number;
+  cancelledOrders: number;
+  productsSold: number;
+  averageOrderSize: number;
+  hourlyActivity: HourlyActivityPoint[];
+}
+
+export interface MarketTrendPoint_Live {
+  timestamp: string;
+  averagePrice: number;
+}
+
+export interface MarketTrendLiveData {
+  points: MarketTrendPoint_Live[];
+}
+
+export type HealthLevel = "LOW" | "MEDIUM" | "HIGH";
+export type PriceTrendDirection = "RISING" | "FALLING" | "STABLE";
+
+export interface MarketplaceHealth {
+  supply: HealthLevel;
+  demand: HealthLevel;
+  priceTrend: PriceTrendDirection;
+  marketActivity: HealthLevel;
+  status: string;
+  message: string;
+}
+
+export interface MarketUpdateEvent {
+  productTypeId: string;
+  timestamp: string;
+  averagePrice: number;
+}
