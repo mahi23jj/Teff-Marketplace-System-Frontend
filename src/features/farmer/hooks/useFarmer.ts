@@ -136,3 +136,49 @@ export function useUpdateOrderStatus(_params?: FarmerOrdersParams) {
     },
   });
 }
+
+// ── Dashboard Redesign Hooks ──────────────────────────────────────
+
+export function useFarmerBusinessOverview() {
+  return useQuery({
+    queryKey: queryKeys.farmer.businessOverview,
+    queryFn: farmerApi.getFarmerBusinessOverview,
+    staleTime: STALE_TIME.dashboards,
+  });
+}
+
+export function useMarketplaceOverview(productTypeId: string) {
+  return useQuery({
+    queryKey: queryKeys.farmer.marketplaceOverview(productTypeId),
+    queryFn: () => farmerApi.getMarketplaceOverview(productTypeId),
+    enabled: !!productTypeId,
+    staleTime: STALE_TIME.dashboards,
+  });
+}
+
+export function useMarketActivityData(productTypeId: string) {
+  return useQuery({
+    queryKey: queryKeys.farmer.marketActivityData(productTypeId),
+    queryFn: () => farmerApi.getMarketActivityData(productTypeId),
+    enabled: !!productTypeId,
+    staleTime: STALE_TIME.dashboards,
+  });
+}
+
+export function useMarketTrendLive(productTypeId: string) {
+  return useQuery({
+    queryKey: queryKeys.farmer.marketTrendLive(productTypeId),
+    queryFn: () => farmerApi.getMarketTrendLive(productTypeId),
+    enabled: !!productTypeId,
+    staleTime: STALE_TIME.dashboards,
+  });
+}
+
+export function useMarketplaceHealth(productTypeId: string) {
+  return useQuery({
+    queryKey: queryKeys.farmer.marketplaceHealth(productTypeId),
+    queryFn: () => farmerApi.getMarketplaceHealth(productTypeId),
+    enabled: !!productTypeId,
+    staleTime: STALE_TIME.dashboards,
+  });
+}

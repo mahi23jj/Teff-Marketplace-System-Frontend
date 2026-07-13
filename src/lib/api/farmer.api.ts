@@ -1,12 +1,17 @@
 import { api } from "./axios";
 import { endpoints } from "./endpoints";
 import type {
+  FarmerBusinessOverview,
   FarmerListing,
   FarmerOrdersResponse,
   FarmerOverview,
   FarmerRecentSale,
+  MarketActivityData,
   MarketPeriod,
+  MarketplaceHealth,
+  MarketplaceOverview,
   MarketStats,
+  MarketTrendLiveData,
   MarketTrendPoint,
   Order,
   OrderStatus,
@@ -105,6 +110,41 @@ export const farmerApi = {
 
   updateOrderStatus: async (id: string, status: OrderStatus): Promise<Order> => {
     const { data } = await api.patch<Order>(endpoints.farmer.orderStatus(id), { status });
+    return data;
+  },
+
+  // ── Dashboard Redesign ──
+
+  getFarmerBusinessOverview: async (): Promise<FarmerBusinessOverview> => {
+    const { data } = await api.get<FarmerBusinessOverview>(endpoints.farmer.farmerBusinessOverview());
+    return data;
+  },
+
+  getMarketplaceOverview: async (productTypeId: string): Promise<MarketplaceOverview> => {
+    const { data } = await api.get<MarketplaceOverview>(endpoints.farmer.marketplaceOverview(), {
+      params: { productTypeId },
+    });
+    return data;
+  },
+
+  getMarketActivityData: async (productTypeId: string): Promise<MarketActivityData> => {
+    const { data } = await api.get<MarketActivityData>(endpoints.farmer.marketActivity(), {
+      params: { productTypeId },
+    });
+    return data;
+  },
+
+  getMarketTrendLive: async (productTypeId: string): Promise<MarketTrendLiveData> => {
+    const { data } = await api.get<MarketTrendLiveData>(endpoints.farmer.marketTrendLive(), {
+      params: { productTypeId },
+    });
+    return data;
+  },
+
+  getMarketplaceHealth: async (productTypeId: string): Promise<MarketplaceHealth> => {
+    const { data } = await api.get<MarketplaceHealth>(endpoints.farmer.marketplaceHealth(), {
+      params: { productTypeId },
+    });
     return data;
   },
 };

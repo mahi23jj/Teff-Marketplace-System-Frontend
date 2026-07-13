@@ -31,6 +31,12 @@ export const endpoints = {
     dashboardStats: (productTypeId: string) =>
       buildPath("api", "farmer", "dashboard", "stats", productTypeId),
     dashboardRecentSales: () => buildPath("api", "farmer", "dashboard", "recent-sales"),
+    // ── Dashboard Redesign endpoints ──
+    farmerBusinessOverview: () => buildPath("api", "farmer", "farmer-overview"),
+    marketplaceOverview: () => buildPath("api", "farmer", "overview"),
+    marketActivity: () => buildPath("api", "farmer", "activity"),
+    marketTrendLive: () => buildPath("api", "farmer", "trend"),
+    marketplaceHealth: () => buildPath("api", "farmer", "health"),
   },
   customer: {
     products: () => buildPath("api", "customer", "products"),
